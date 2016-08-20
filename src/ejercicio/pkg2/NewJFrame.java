@@ -5,6 +5,8 @@
  */
 package ejercicio.pkg2;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author pared
@@ -27,21 +29,191 @@ public class NewJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtsueldo = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        cmbHijos = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        txtbonif = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtsueltotal = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Pago a Trabajadores");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 11, -1, 27));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("Sueldo de trabajador:");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 56, -1, -1));
+        jPanel2.add(txtsueldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 56, 94, -1));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("Cantidad de Hijos:");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+
+        cmbHijos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        jPanel2.add(cmbHijos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("Bonificacion a Pagar:");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
+
+        txtbonif.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtbonif.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtbonifKeyTyped(evt);
+            }
+        });
+        jPanel2.add(txtbonif, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 90, -1));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Sueldo Total:");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
+
+        txtsueltotal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtsueltotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtsueltotalActionPerformed(evt);
+            }
+        });
+        txtsueltotal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtsueltotalKeyTyped(evt);
+            }
+        });
+        jPanel2.add(txtsueltotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 110, -1));
+
+        jButton1.setText("Ejecutar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, -1, -1));
+
+        jButton2.setText("Borrar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, -1, -1));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        double sueldo,total, resultado = 0, bonif=80000, operacion;
+        int op;
+        String res;
+        if (txtsueldo.getText().trim().isEmpty()) 
+        {
+            JOptionPane.showMessageDialog(this, "Ingrese sueldo del Trabajador", "ERROR", JOptionPane.ERROR_MESSAGE);
+            txtsueldo.requestFocusInWindow();
+        }
+        else {
+        op= cmbHijos.getSelectedIndex();
+        sueldo= Double.parseDouble(txtsueldo.getText());
+        
+        switch (op)
+        {
+            case 0:
+                resultado= bonif*0;
+                break;
+            case 1:
+                resultado= bonif*1;
+                break;
+            case 2:
+                resultado= bonif*2;
+                break;
+            case 3: 
+                resultado= bonif*3;
+                break;
+            case 4:
+                resultado= bonif*4;
+                break;
+            case 5:
+                resultado= bonif*5;
+                break;
+            case 6:
+                resultado= bonif*6;
+                break;
+            case 7: 
+                resultado = bonif*7;
+                break;
+            case 8:
+                resultado = bonif*8;
+                break;
+            case 9:
+                resultado= bonif*9;
+                break;
+            case 10:
+                resultado= bonif*10;
+                break;
+        }
+       txtbonif.setText(""+resultado);
+       operacion= resultado+sueldo;
+       txtsueltotal.setText(""+operacion);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtbonifKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbonifKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar(); 
+          if(!Character.isDigit(c)) 
+          { 
+              getToolkit().beep(); 
+              evt.consume();      
+          }
+         
+          if(!Character.isLetter(c)) 
+          { 
+              getToolkit().beep(); 
+              evt.consume(); 
+          }
+    }//GEN-LAST:event_txtbonifKeyTyped
+
+    private void txtsueltotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsueltotalActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtsueltotalActionPerformed
+
+    private void txtsueltotalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsueltotalKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar(); 
+          if(!Character.isDigit(c)) 
+          { 
+              getToolkit().beep(); 
+              evt.consume();      
+          }
+         
+          if(!Character.isLetter(c)) 
+          { 
+              getToolkit().beep(); 
+              evt.consume(); 
+          }
+    }//GEN-LAST:event_txtsueltotalKeyTyped
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        txtbonif.setText("");
+        txtsueldo.setText("");
+        txtsueltotal.setText("");
+        cmbHijos.setSelectedIndex(0);
+        txtsueldo.requestFocusInWindow();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -59,25 +231,31 @@ public class NewJFrame extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NewJFrame().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new NewJFrame().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cmbHijos;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField txtbonif;
+    private javax.swing.JTextField txtsueldo;
+    private javax.swing.JTextField txtsueltotal;
     // End of variables declaration//GEN-END:variables
 }
