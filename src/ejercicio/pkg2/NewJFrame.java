@@ -115,7 +115,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        double sueldo,total, resultado = 0, bonif=80000, operacion;
+        long sueldo,total, resultado = 0, bonif=80000, operacion;
         int op;
         String res;
         if (txtsueldo.getText().trim().isEmpty()) 
@@ -125,7 +125,7 @@ public class NewJFrame extends javax.swing.JFrame {
         }
         else {
         op= cmbHijos.getSelectedIndex();
-        sueldo= Double.parseDouble(txtsueldo.getText());
+        sueldo= Long.parseLong(txtsueldo.getText());
         
         switch (op)
         {
